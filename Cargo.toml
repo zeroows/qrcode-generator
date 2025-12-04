@@ -1,0 +1,18 @@
+[workspace]
+resolver = "2"
+members = [
+    "qrcode-lib",
+    "qrcode-app",
+]
+
+[workspace.package]
+authors = ["Abdulrhman Alkhodiry <aalkhodiry@gmail.com>"]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/zeroows/qrcode-generator"
+
+[workspace.dependencies]
+qrcode-lib = { path = "qrcode-lib" }
+
+# Common dependencies (if needed in the future)
+
