@@ -4,7 +4,7 @@ out_dir = "dist"
 
 [web.app]
 title = "QR Code Generator"
-# base_path = "qrcode-app"
+base_path = "qrcode-generator"
 
 [web.watcher]
 reload_html = true

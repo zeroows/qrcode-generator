@@ -2,6 +2,10 @@
 
 A powerful and elegant QR Code generator library for Rust with fancy rendering capabilities by Abdulrhman Alkhodiry.
 
+## 🌐 Live Demo
+
+Try the web app: **[https://zeroows.github.io/qrcode-generator/](https://zeroows.github.io/qrcode-generator/)**
+
 ## Features
 
 ### Core QR Code Features

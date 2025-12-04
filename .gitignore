@@ -1,4 +1,6 @@
 /target
 /output
+/dist
 *.svg
-DS_Store
+.DS_Store
+Cargo.lock
