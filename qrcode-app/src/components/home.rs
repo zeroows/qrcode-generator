@@ -2,8 +2,8 @@ use dioxus::prelude::*;
 use qrcode_lib::fancy::FancyQr;
 use gloo_timers::future::sleep;
 use std::time::Duration;
-use crate::types::{QrStyle, get_style_options};
-use super::{Header, UrlInput, StyleSelector, PreviewPanel, Footer};
+use crate::types::{QrStyle, get_custom_style_options};
+use super::{Header, UrlInput, StyleSelector, PreviewPanel, Footer, LogoUploader, ColorSchemePicker};
 
 const LOGO_SVG: &str = include_str!("../../assets/logo-icon.svg");
 
@@ -13,11 +13,21 @@ pub fn Home() -> Element {
     let style = use_signal(|| QrStyle::GradientMinimal);
     let mut svg_output = use_signal(|| String::new());
     let mut copying = use_signal(|| false);
+    
+    // Custom logo and colors
+    let custom_logo = use_signal(|| Option::<String>::None);
+    let background_color = use_signal(|| "#FFFFFF".to_string());
+    let data_color = use_signal(|| "#4d3695".to_string());
+    let finder_color = use_signal(|| "#4d3695".to_string());
 
     // Generate QR code when inputs change
     use_effect(move || {
         let url = content();
         let current_style = style();
+        let logo = custom_logo();
+        let bg = background_color();
+        let data = data_color();
+        let finder = finder_color();
 
         if url.is_empty() {
             return;
@@ -28,13 +38,16 @@ pub fn Home() -> Element {
             Err(_) => return,
         };
 
-        let logo_base64 = if !LOGO_SVG.is_empty() {
-            base64_encode_svg(LOGO_SVG)
+        // Use custom logo if provided, otherwise use default
+        let logo_svg = logo.as_deref().unwrap_or(LOGO_SVG);
+        let logo_base64 = if !logo_svg.is_empty() {
+            base64_encode_svg(logo_svg)
         } else {
             String::new()
         };
 
-        let options = get_style_options(current_style, &logo_base64);
+        // Use custom colors if provided
+        let options = get_custom_style_options(current_style, &logo_base64, &bg, &data, &finder);
         let svg = qr.render_svg(&options);
         svg_output.set(svg);
     });
@@ -87,6 +100,12 @@ pub fn Home() -> Element {
                             Header {}
                             UrlInput { value: content }
                             StyleSelector { selected: style }
+                            LogoUploader { custom_logo: custom_logo }
+                            ColorSchemePicker { 
+                                background_color: background_color,
+                                data_color: data_color,
+                                finder_color: finder_color
+                            }
                         }
                     }
 

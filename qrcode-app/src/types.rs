@@ -114,3 +114,26 @@ pub fn get_style_options(style: QrStyle, logo_base64: &str) -> FancyOptions {
     options
 }
 
+pub fn get_custom_style_options(
+    style: QrStyle, 
+    logo_base64: &str,
+    background_color: &str,
+    data_color: &str,
+    finder_color: &str
+) -> FancyOptions {
+    let mut options = get_style_options(style, logo_base64);
+    
+    // Override with custom colors if they're not empty
+    if !background_color.is_empty() {
+        options.color_background = background_color.to_string();
+    }
+    if !data_color.is_empty() {
+        options.color_data = data_color.to_string();
+    }
+    if !finder_color.is_empty() {
+        options.color_finder = finder_color.to_string();
+    }
+    
+    options
+}
+
