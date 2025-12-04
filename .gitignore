@@ -1,6 +1,13 @@
 /target
 /output
 /dist
-*.svg
 .DS_Store
-Cargo.lock
+
+# Ignore generated QR code SVGs, but not asset SVGs
+/qrcode-lib/output/*.svg
+/qrcode-lib/*.svg
+fancy_qrcode.svg
+
+# Keep these SVG assets
+!qrcode-app/assets/*.svg
+!qrcode-lib/logo-icon.svg
