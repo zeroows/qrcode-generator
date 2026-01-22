@@ -14,7 +14,7 @@ pub fn UrlInput(value: Signal<String>) -> Element {
                 input {
                     class: "w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700/50 focus:ring-2 focus:ring-[#4d3695] focus:border-transparent transition-all outline-none shadow-sm text-slate-800 dark:text-white placeholder:text-slate-400",
                     value: "{value}",
-                    placeholder: "https://example.com/",
+                    placeholder: "https://qr.spectrs.app/",
                     oninput: move |evt| value.set(evt.value())
                 }
             }

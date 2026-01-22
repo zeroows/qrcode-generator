@@ -9,7 +9,7 @@ const LOGO_SVG: &str = include_str!("../../assets/logo-icon.svg");
 
 #[component]
 pub fn Home() -> Element {
-    let content = use_signal(|| "https://example.com/".to_string());
+    let content = use_signal(|| "https://qr.spectrs.app/".to_string());
     let style = use_signal(|| QrStyle::GradientMinimal);
     let mut svg_output = use_signal(|| String::new());
     let mut copying = use_signal(|| false);
