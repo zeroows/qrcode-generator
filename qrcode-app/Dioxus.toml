@@ -4,7 +4,7 @@ out_dir = "dist"
 
 [web.app]
 title = "QR Code Generator"
-# base_path = "qrcode-generator"  # Uncommented for local dev, set via CLI for production
+base_path = ""  # Uncommented for local dev, set via CLI for production
 
 [web.watcher]
 reload_html = true
